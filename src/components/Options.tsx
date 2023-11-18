@@ -1,4 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+
 type optionType = {
     options: {
         option: string
@@ -6,8 +7,9 @@ type optionType = {
         id: number
     }[]
     clicked: boolean
-    HandleDrag:any
+    HandleDrag: any
 }
+
 export default function Options({ options, clicked, HandleDrag }: optionType) {
     if (clicked) {
         return (
@@ -17,10 +19,10 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
                     cursor: "not-allowed"
                 }
                 return (
+
                     <div style={styles} key={idx} className="w-ful mb-[18px] flex items-center p-2 pl-10 
                     rounded-l">
                         <h1 className="text-white text-[30px]">{option.option}</h1>
-
                     </div>
                 )
             })
@@ -30,25 +32,30 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
         <DragDropContext onDragEnd={HandleDrag}>
             <Droppable droppableId="ROOT" type="group">
                 {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                    <div {...provided.droppableProps} ref={provided.innerRef} className="h-[380px]">
                         {options.map((option, idx) => (
-                            <Draggable draggableId={String(option.id)} key={idx} index={idx}>
+                            <Draggable draggableId={String(option.id)} key={option.id} index={idx}>
                                 {
                                     (provided) => (
 
                                         <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}
                                             className="w-ful mb-[18px] bg-main flex items-center p-2 pl-10 
-                                    rounded-l hover:scale-[1.02] cursor-pointer transition-all">
+                                    rounded-l">
 
-                                            <h1 className="text-white text-[30px]"><span className="mr-2">{idx + 1}</span>-{option.option}</h1>
-
+                                            <h1 className="text-white text-[30px]">{option.option}</h1>
                                         </div>
+
                                     )
+
                                 }
+
+
+
                             </Draggable>
 
                         )
                         )}
+                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>
