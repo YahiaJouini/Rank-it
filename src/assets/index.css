@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&family=Overpass:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  font-family: 'Nova Square', sans-serif;
+  color: white;
+}
+
+@layer components {
+    .btn {
+      @apply text-bgc text-[26px] tracking-wider font-bold
+      h-[65px] w-[255px] mb-[25px] rounded-lg  
+      flex justify-center items-center
+      hover:scale-105 transition-all ;
+    }
+
+    .txt {
+      @apply text-[35px]
+    }
+  }
+.animation {
+  transition: all .5s ease;
+}
