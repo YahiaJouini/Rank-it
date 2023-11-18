@@ -47,10 +47,10 @@ export const Quizdata:QuizdataType= [
       question: "Rank these animals by their average lifespan, from shortest to longest?",
       options: [
         { "option": "Mouse", "rank": 1 },
-        { "option": "Dog", "rank": 3 },
-        { "option": "Elephant", "rank": 5 },
-        { "option": "Turtle", "rank": 2 },
-        { "option": "Parrot", "rank": 4 }
+        { "option": "Dog", "rank": 2 },
+        { "option": "Elephant", "rank": 3 },
+        { "option": "Turtle", "rank": 4 },
+        { "option": "Parrot", "rank": 5 }
       ]
     },
     {
