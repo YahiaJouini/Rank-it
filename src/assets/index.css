@@ -21,9 +21,6 @@ body {
     }
 
     .txt {
-      @apply text-[35px]
+      @apply text-[35px];
     }
   }
-.animation {
-  transition: all .5s ease;
-}

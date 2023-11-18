@@ -48,9 +48,9 @@ export const Quizdata: QuizdataType = [
     "question": "Rank these mountains by height, from tallest to shortest",
     "options": [
       { "option": "K2", "rank": 2, "id": 1 },
-      { "option": "Kangchenjunga", "rank": 3, "id": 2 },
-      { "option": "Lhotse", "rank": 4, "id": 3 },
       { "option": "Nanga Parbat", "rank": 5, "id": 4 },
+      { "option": "Lhotse", "rank": 4, "id": 3 },
+      { "option": "Kangchenjunga", "rank": 3, "id": 2 },
       { "option": "Mount Everest", "rank": 1, "id": 5 }
     ]
   },

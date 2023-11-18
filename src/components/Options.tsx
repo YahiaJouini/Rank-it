@@ -11,13 +11,16 @@ type optionType = {
 }
 
 export default function Options({ options, clicked, HandleDrag }: optionType) {
+
     if (clicked) {
         return (
             options.map((option, idx) => {
+
                 const styles = {
                     backgroundColor: idx + 1 === option.rank ? "#06da22" : '#dd1011',
                     cursor: "not-allowed"
                 }
+
                 return (
 
                     <div style={styles} key={idx} className="w-ful mb-[18px] flex items-center p-2 pl-10 
@@ -31,8 +34,10 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
     return (
         <DragDropContext onDragEnd={HandleDrag}>
             <Droppable droppableId="ROOT" type="group">
+
                 {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="h-[380px]">
+
                         {options.map((option, idx) => (
                             <Draggable draggableId={String(option.id)} key={option.id} index={idx}>
                                 {
@@ -44,22 +49,21 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
 
                                             <h1 className="text-white text-[30px]">{option.option}</h1>
                                         </div>
-
                                     )
-
                                 }
-
-
-
                             </Draggable>
-
                         )
                         )}
+
                         {provided.placeholder}
+
                     </div>
                 )}
+
             </Droppable>
+
         </DragDropContext>
+
     )
 
 }

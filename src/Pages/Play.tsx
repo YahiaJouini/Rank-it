@@ -1,27 +1,24 @@
 import { Quizdata } from "../data/Quizdata"
 import PlayInfo from '../components/PlayInfo'
 import Question from '../components/Question'
-import Options from "./Options"
-import EndPage from "../components/EndPage"
+import Options from "../components/Options"
+import EndPage from "./EndPage"
 
 
 
 import { useState, useRef, useEffect } from "react"
 
+export default function Play({ HandleSave }: any) {
 
-
-export default function Play() {
-
-  //useState hooks
   const [index, setIndex] = useState(0)
   const [clicked, setClicked] = useState(false)
-  const [end, setEnd] = useState(false)
-
-  const correct = useRef(0)
   const [data, setData] = useState(Quizdata[index])
 
+  const correct = useRef(0)
+
+
   useEffect(() => {
-    setData(Quizdata[index])
+    index < Quizdata.length && setData(Quizdata[index])
   }, [index])
 
   function correctOrder(arr: any) {
@@ -30,7 +27,7 @@ export default function Play() {
         correct.current++
       }
     }
- 
+
   }
 
   function HandleClick() {
@@ -39,19 +36,14 @@ export default function Play() {
     setTimeout(() => {
 
       correctOrder(data.options)
-
-      if (index < Quizdata.length - 1) {
-        setClicked(false)
-        setIndex(prev => prev + 1)
-      } else { setEnd(true) }
-
+      setClicked(false)
+      setIndex(prev => prev + 1)
     }, 1000);
   }
 
   function HandlePlay() {
     setIndex(0)
     correct.current = 0
-    setEnd(false)
     setClicked(false)
   }
 
@@ -68,10 +60,11 @@ export default function Play() {
       ...prev, options: reOrder
 
     }))
-
   }
 
-  if (!end) {
+
+
+  if (index < Quizdata.length) {
     return (
 
       <div className="w-[800px] h-[800px]">
@@ -85,7 +78,7 @@ export default function Play() {
     )
   }
   return (
-    <EndPage HandlePlay={HandlePlay} score={correct.current * 10} />
+    <EndPage HandleSave={HandleSave} HandlePlay={HandlePlay} score={correct.current * 10} />
   )
 
 }
