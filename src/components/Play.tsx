@@ -5,17 +5,9 @@ import Options from "./Options"
 import EndPage from "../components/EndPage"
 
 
+
 import { useState, useRef } from "react"
 
-
-type currentType = {
-  question: string;
-  id: number;
-  options: {
-    option: string;
-    rank: number;
-  }[];
-}
 
 
 export default function Play() {
@@ -24,11 +16,10 @@ export default function Play() {
   const [index, setIndex] = useState(0)
   const [clicked,setClicked] = useState(false)
   const [end,setEnd] = useState(false)
-
+  const [data,setData] = useState(Quizdata[index])
 
 
   const correct = useRef(0)
-  const current: currentType = Quizdata[index]
 
   function correctOrder(arr : any) {
     for (let i=0 ; i<arr.length ; i++) {
@@ -42,8 +33,8 @@ export default function Play() {
   function HandleClick() {
     setClicked(true)
     setTimeout(() => {
-      if(correctOrder(current.options)) {
-        correct.current=correct.current+1
+      if(correctOrder(data.options)) {
+        correct.current+=1
       } 
 
       if(index<Quizdata.length-1) {
@@ -60,12 +51,31 @@ export default function Play() {
     setEnd(false)
     setClicked(false)
   }
+
+  function HandleDrag(results:any) {
+    const {source , destination} = results
+    const sourceIndex=source.index
+    const destinationIndex=destination.index
+    if(source.index===destination.index) {return;}
+    const reOrder=[...data.options];
+    const [removed]=reOrder.splice(sourceIndex,1)
+    console.log(removed)
+    console.log(reOrder)
+
+    
+
+
+  }
+
+
+
   if(!end) {
     return (
-      <div className="w-[800px]">
+      
+      <div className="w-[800px] h-[800px]">
         <PlayInfo index={index + 1} length={Quizdata.length} score={correct.current * 100} />
-        <Question question={current.question} />
-        <Options clicked={clicked} options={current.options} />
+        <Question question={data.question} />
+        <Options HandleDrag={HandleDrag} clicked={clicked} options={data.options} />
         <div className="flex justify-center mt-[50px]">
           <button disabled={clicked } onClick={HandleClick} className="btn rounded bg-second">Next</button>
         </div>

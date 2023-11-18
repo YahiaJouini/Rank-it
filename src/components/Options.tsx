@@ -1,37 +1,58 @@
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 type optionType = {
-    options : {
-        option: string;
-    rank: number;
+    options: {
+        option: string
+        rank: number
+        id: number
     }[]
-    clicked:boolean
+    clicked: boolean
+    HandleDrag:any
 }
-export default function Options({options,clicked}:optionType) {
-    if(clicked) {
+export default function Options({ options, clicked, HandleDrag }: optionType) {
+    if (clicked) {
         return (
-            options.map((option,idx) => {
-                const styles= {
-                    backgroundColor : idx+1===option.rank ? "#06da22" : '#dd1011'
+            options.map((option, idx) => {
+                const styles = {
+                    backgroundColor: idx + 1 === option.rank ? "#06da22" : '#dd1011',
+                    cursor: "not-allowed"
                 }
                 return (
-                    <div style={styles} key={idx}  className="w-ful mb-[18px] flex items-center p-2 pl-10 
-                    rounded-l hover:scale-[1.02] cursor-pointer transition-all">
-    
+                    <div style={styles} key={idx} className="w-ful mb-[18px] flex items-center p-2 pl-10 
+                    rounded-l">
                         <h1 className="text-white text-[30px]">{option.option}</h1>
-                        
+
                     </div>
                 )
             })
         )
     }
     return (
-        options.map((option,idx) => {
-            return (
-                <div key={idx}  className="w-ful mb-[18px] bg-main flex items-center p-2 pl-10 
-                rounded-l hover:scale-[1.02] cursor-pointer transition-all">
-                    <h1 className="text-white text-[30px]">{option.option}</h1>
-                </div>
-            )
-        })
+        <DragDropContext onDragEnd={HandleDrag}>
+            <Droppable droppableId="ROOT" type="group">
+                {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                        {options.map((option, idx) => (
+                            <Draggable draggableId={String(option.id)} key={idx} index={idx}>
+                                {
+                                    (provided) => (
+
+                                        <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}
+                                            className="w-ful mb-[18px] bg-main flex items-center p-2 pl-10 
+                                    rounded-l hover:scale-[1.02] cursor-pointer transition-all">
+
+                                            <h1 className="text-white text-[30px]"><span className="mr-2">{idx + 1}</span>-{option.option}</h1>
+
+                                        </div>
+                                    )
+                                }
+                            </Draggable>
+
+                        )
+                        )}
+                    </div>
+                )}
+            </Droppable>
+        </DragDropContext>
     )
-    
+
 }
