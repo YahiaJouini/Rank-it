@@ -12,7 +12,7 @@ export default {
         bgc:"#1a1919"
       },
       screens : {
-        "small" : "399px"
+        "small" : "389px"
       }
       
     },

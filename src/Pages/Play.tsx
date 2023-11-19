@@ -48,13 +48,19 @@ export default function Play({ HandleSave }: any) {
   }
 
   function HandleDrag(results: any) {
+
     const { source, destination } = results
     const sourceIndex = source.index
     const destinationIndex = destination?.index
+
+    if (destinationIndex === undefined) { return; }
     if (source.index === destination?.index) { return; }
+
     const reOrder = [...data.options];
     const [removed] = reOrder.splice(sourceIndex, 1)
+
     reOrder.splice(destinationIndex, 0, removed)
+
     return setData(prev => ({
 
       ...prev, options: reOrder
@@ -67,12 +73,12 @@ export default function Play({ HandleSave }: any) {
   if (index < Quizdata.length) {
     return (
 
-      <div className="w-[800px] h-[800px]">
+      <div className="w-[85%] h-[88%] small:h-[70%] flex flex-col justify-between lg:w-[800px] lg:h-[800px]">
         <PlayInfo index={index + 1} length={Quizdata.length} score={correct.current * 10} />
         <Question question={data.question} />
         <Options HandleDrag={HandleDrag} clicked={clicked} options={data.options} />
-        <div className="flex justify-center mt-[50px]">
-          <button disabled={clicked} onClick={HandleClick} className="btn rounded bg-second">Next</button>
+        <div className="flex justify-center lg:mt-[50px]">
+          <button disabled={clicked} onClick={HandleClick} className="w-[180px] h-[45px] text-bgc rounded bg-second mt-4 text-[22px] tracking-wider font-bold lg:w-[210px] lg:h-[55px] ">Next</button>
         </div>
       </div>
     )
@@ -80,5 +86,4 @@ export default function Play({ HandleSave }: any) {
   return (
     <EndPage HandleSave={HandleSave} HandlePlay={HandlePlay} score={correct.current * 10} />
   )
-
 }

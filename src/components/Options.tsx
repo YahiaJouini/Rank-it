@@ -23,9 +23,8 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
 
                 return (
 
-                    <div style={styles} key={idx} className="w-ful mb-[18px] flex items-center p-2 pl-10 
-                    rounded-l">
-                        <h1 className="text-white text-[30px]">{option.option}</h1>
+                    <div style={styles} key={idx} className="w-ful flex items-center p-2 pl-10 rounded-l mb-[18px]">
+                        <h1 className="text-white no-select text-[18px] lg:text-[30px]">{option.option}</h1>
                     </div>
                 )
             })
@@ -36,7 +35,7 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
             <Droppable droppableId="ROOT" type="group">
 
                 {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef} className="h-[380px]">
+                    <div {...provided.droppableProps} ref={provided.innerRef} className="lg:h-[380px]">
 
                         {options.map((option, idx) => (
                             <Draggable draggableId={String(option.id)} key={option.id} index={idx}>
@@ -44,10 +43,9 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
                                     (provided) => (
 
                                         <div {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}
-                                            className="w-ful mb-[18px] bg-main flex items-center p-2 pl-10 
-                                    rounded-l">
+                                            className="bg-main w-ful flex items-center p-2 pl-10 rounded-l mb-[18px]">
 
-                                            <h1 className="text-white no-select text-[30px] ">{option.option}</h1>
+                                            <h1 className="text-white no-select text-[18px] lg:text-[30px] ">{option.option}</h1>
                                         </div>
                                     )
                                 }
