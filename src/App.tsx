@@ -4,13 +4,19 @@ import Play from "./Pages/Play"
 import HighScores from "./Pages/HighScores"
 
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 export default function App() {
+  
+  const initialData = JSON.parse(localStorage.getItem("load-data") || "")
 
-  const [saved, setSaved] = useState<{ score?: number, name?: string }[]>([{}])
+  const [saved, setSaved] = useState<{ score?: number, name?: string }[]>(initialData || [{}])
+
+  useEffect(() => {
+    localStorage.setItem("load-data", JSON.stringify(saved));
+  }, [saved]);
 
   function HandleSave(name: string, score: number) {
 

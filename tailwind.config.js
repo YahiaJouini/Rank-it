@@ -10,6 +10,9 @@ export default {
         main:"#0859ff",
         second:"#e7d206",
         bgc:"#1a1919"
+      },
+      screens : {
+        "small" : "399px"
       }
       
     },

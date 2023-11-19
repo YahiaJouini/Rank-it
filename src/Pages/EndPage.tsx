@@ -16,9 +16,8 @@ export default function EndPage({ score, HandlePlay, HandleSave }: EndPageType) 
 
       <h1 className="text-[60px] ">{score}</h1>
       <h1 className="txt text-center mb-6">Enter Your name below to save Your Score!</h1>
-
       <input type="text"
-        className="w-[80%] h-[40px] outline-none pl-4 mb-10 text-bgc font-bold text-[20px]"
+        className="w-[80%] h-[45px] rounded-[4px] outline-none pl-4 mb-10 text-bgc font-bold text-[20px]"
         placeholder="Enter Your Name"
         onChange={(e) => setName(e.target.value)}
       />

@@ -47,7 +47,7 @@ export default function Options({ options, clicked, HandleDrag }: optionType) {
                                             className="w-ful mb-[18px] bg-main flex items-center p-2 pl-10 
                                     rounded-l">
 
-                                            <h1 className="text-white text-[30px]">{option.option}</h1>
+                                            <h1 className="text-white no-select text-[30px] ">{option.option}</h1>
                                         </div>
                                     )
                                 }

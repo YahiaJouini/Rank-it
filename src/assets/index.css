@@ -2,25 +2,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
   font-family: 'Nova Square', sans-serif;
   color: white;
 }
 
 @layer components {
-    .btn {
-      @apply text-bgc text-[26px] tracking-wider font-bold
-      h-[65px] w-[255px] mb-[25px] rounded-lg  
-      flex justify-center items-center
-      hover:scale-105 transition-all ;
-    }
-
-    .txt {
-      @apply text-[35px];
-    }
+  .btn {
+    @apply text-bgc text-[26px] tracking-wider font-bold
+             h-[65px] w-[255px] mb-[25px] rounded-lg
+             flex justify-center items-center 
+             hover:scale-105 transition-all;
   }
+
+  .txt {
+    @apply text-[35px];
+  }
+}
+
+/* disabling the text selection */
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

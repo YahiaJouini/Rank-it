@@ -50,8 +50,8 @@ export default function Play({ HandleSave }: any) {
   function HandleDrag(results: any) {
     const { source, destination } = results
     const sourceIndex = source.index
-    const destinationIndex = destination.index
-    if (source.index === destination.index) { return; }
+    const destinationIndex = destination?.index
+    if (source.index === destination?.index) { return; }
     const reOrder = [...data.options];
     const [removed] = reOrder.splice(sourceIndex, 1)
     reOrder.splice(destinationIndex, 0, removed)
