@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
   
-  const initialData = JSON.parse(localStorage.getItem("load-data") || "")
+  const initialData = localStorage.getItem("load-data")? JSON.parse(localStorage.getItem("load-data") || "") : ""
 
   const [saved, setSaved] = useState<{ score?: number, name?: string }[]>(initialData || [{}])
 
